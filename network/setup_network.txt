@@ -1,0 +1,33 @@
+stickPCの環境設定、作業メモ
+前提　ubuntu 16.04, ROS kinetic　インストール済み
+
+ステップ1　devel/setup.bashの編集
+当該ファイルに以下を追加
+-----------------------------------------------------
+export ROS_MASTER_URI=http://192.168.2.1:11311　
+export ROS_IP=192.168.11.6
+echo "Finsih setup ROS_NETWORK"
+-----------------------------------------------------
+
+ステップ2　routing.bashファイルの作成
+場所はどこでも良いので、以下の内容で作成。
+-----------------------------------------------------
+sudo ip route add 192.168.2.0/24 via 192.168.11.6 dev wlp2s0
+-----------------------------------------------------
+この時、ifconfigでipアドレス、nic(wlp2s0)を確認し、それに合わせて書き換える必要あり。
+
+ステップ3　robotic-LANに接続
+パスワードはいつもの。
+ubuntuのGUIからWifi設定のEdit conectionsを選択
+Robotics-LANを編集。
+IPv4 Settingsの中のAdressesに以下の設定を追加。
+-----------------------------------------------------
+Address | Netmask | Gateway
+192.168.11.6 | 255.255.255.0 | 192.168.0.1
+DNS servers : 192.168.0.1
+Require IPv4 addressing for this connection to completeにチェック
+-----------------------------------------------------
+
+ステップ4　sshのopen-serverをinstall
+※ mm2010に接続
+$ sudo apt install openssh-server
