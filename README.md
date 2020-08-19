@@ -4,7 +4,7 @@ ROS以外にもターミネータやAtom等の便利ソフトのAutoインスト
 
 # 準備
 ```vb
-$ gitclone https://github.com/kumahika/ubuntu16.04-and-roskinetic-init
+$ git clone https://github.com/kumahika/ubuntu16.04-and-roskinetic-init
 ```
 
 ## 1. ROSのみを入れたい人
